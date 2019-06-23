@@ -1,0 +1,19 @@
+<?php 
+
+$client = new SoapClient("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL");
+try {
+    $result = $client->TCKimlikNoDogrula([
+        'TCKimlikNo' => '123456789101',
+        'Ad' => 'deneme',
+        'Soyad' => 'deneme',
+        'DogumYili' => '1993'
+    ]);
+    if ($result->TCKimlikNoDogrulaResult) {
+        echo 'T.C. Kimlik No Doğru';
+    } else {
+        echo 'T.C. Kimlik No Hatalı';
+    }
+} catch (Exception $e) {
+    echo $e->faultstring;
+}
+?>
